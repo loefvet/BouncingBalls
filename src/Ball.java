@@ -4,18 +4,19 @@ import java.awt.geom.Rectangle2D;
 
 public class Ball extends Ellipse2D {
 
-	private double x, y, vx, vy, r, xCenter, yCenter;
+	private double x, y, vx, vy, d, xCenter, yCenter, weigth, density = 3.26;
 	private Ellipse2D.Double ellipse;
 	
-	public Ball(double xCenter, double yCenter, double vx, double vy, double r) {
-		this.x = xCenter-r;
-		this.y = yCenter-r;
+	public Ball(double xCenter, double yCenter, double vx, double vy, double d) {
+		this.x = xCenter-d;
+		this.y = yCenter-d;
 		this.vx = vx;
 		this.vy = vy;
-		this.r = r;
+		this.d = d;
 		this.xCenter = xCenter;
 		this.yCenter = yCenter;
-		ellipse = new Ellipse2D.Double(x, y, r, r);
+		weigth = 2 * Math.PI * Math.pow(d/2, 2) * density;
+		ellipse = new Ellipse2D.Double(x, y, d, d);
 		
 	}
 	
@@ -25,12 +26,12 @@ public class Ball extends Ellipse2D {
 
 	@Override
 	public double getHeight() {
-		return r;
+		return d;
 	}
 
 	@Override
 	public double getWidth() {
-		return r;
+		return d;
 	}
 
 	@Override
@@ -61,6 +62,10 @@ public class Ball extends Ellipse2D {
 		return vy;
 	}
 	
+	public double getWeigth(){
+		return weigth;
+	}
+	
 	public void setVelocityX(double vx){
 		this.vx = vx;
 	}
@@ -81,12 +86,12 @@ public class Ball extends Ellipse2D {
 	
 	public void setCenterX(double xCenter) {
 		this.xCenter = xCenter;
-		ellipse.x = xCenter-r;
+		ellipse.x = xCenter-d;
 	}
 	
 	public void setCenterY(double yCenter) {
 		this.yCenter = yCenter;
-		this.ellipse.y = yCenter-r;
+		this.ellipse.y = yCenter-d;
 	}
 
 	@Override
