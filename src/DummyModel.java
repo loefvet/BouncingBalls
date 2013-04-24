@@ -24,7 +24,7 @@ public class DummyModel implements IBouncingBallsModel {
 			double velocityX = myBalls.get(i).getVelocityX();
 			double velocityY = myBalls.get(i).getVelocityY();
 			double radius = myBalls.get(i).getWidth();
-
+System.out.println(centerX);
 			if (centerX < radius || centerX > areaWidth - radius) {
 				velocityX *= -1;
 				myBalls.get(i).setVelocityX(velocityX);
@@ -36,6 +36,7 @@ public class DummyModel implements IBouncingBallsModel {
 			}
 			myBalls.get(i).setCenterX(centerX + velocityX * deltaT);
 			myBalls.get(i).setCenterY(centerY + velocityY * deltaT);
+			System.out.println(myBalls.get(i).getCenterX());
 		}
 	}
 
