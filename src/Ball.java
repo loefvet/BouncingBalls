@@ -81,10 +81,12 @@ public class Ball extends Ellipse2D {
 	
 	public void setCenterX(double xCenter) {
 		this.xCenter = xCenter;
+		ellipse.x = xCenter-r;
 	}
 	
 	public void setCenterY(double yCenter) {
 		this.yCenter = yCenter;
+		this.ellipse.y = yCenter-r;
 	}
 
 	@Override

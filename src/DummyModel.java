@@ -6,15 +6,17 @@ public class DummyModel implements IBouncingBallsModel {
 
 	private final double areaWidth;
 	private final double areaHeight;
+	private List<Ball> myBalls = new LinkedList<Ball>();
 
 	public DummyModel(double width, double height) {
+		myBalls.add(new Ball(450, 220, 5, 3.6, 50));
+		myBalls.add(new Ball(760, 360, 1, 3, 75));
 		this.areaWidth = width;
 		this.areaHeight = height;
 	}
 
 	@Override
 	public void tick(double deltaT) {
-		List<Ball> myBalls = getBalls();
 		for (int i = 0; i < myBalls.size(); i++) {
 
 			double centerX = myBalls.get(i).getCenterX();
@@ -39,9 +41,6 @@ public class DummyModel implements IBouncingBallsModel {
 
 	@Override
 	public List<Ball> getBalls() {
-		List<Ball> myBalls = new LinkedList<Ball>();
-		myBalls.add(new Ball(450, 227, 5, 3.6, 50));
-		myBalls.add(new Ball(760, 360, 1, 3, 75));
 		return myBalls;
 	}
 }

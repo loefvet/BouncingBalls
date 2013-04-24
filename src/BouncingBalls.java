@@ -14,7 +14,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public final class BouncingBalls extends Animator {
 
-	private static final double PIXELS_PER_METER = 30;
+	private static final double PIXELS_PER_METER = 1;
 
 	private IBouncingBallsModel model;
 	private double modelHeight;
@@ -40,8 +40,8 @@ public final class BouncingBalls extends Animator {
 		g.setColor(Color.RED);
 		g.scale(PIXELS_PER_METER, -PIXELS_PER_METER);
 		g.translate(0, -modelHeight);
-		for (Ball b : balls) {
-			g.fill(b.getEllipse());
+		for (Ellipse2D b : balls) {
+			g.fill(b);
 		}
 	}
 
