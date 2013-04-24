@@ -4,7 +4,8 @@ import java.awt.geom.Rectangle2D;
 
 public class Ball extends Ellipse2D {
 
-	double x, y, vx, vy, r, xCenter, yCenter;
+	private double x, y, vx, vy, r, xCenter, yCenter;
+	private Ellipse2D.Double ellipse;
 	
 	public Ball(double xCenter, double yCenter, double vx, double vy, double r) {
 		this.x = xCenter-r;
@@ -14,7 +15,12 @@ public class Ball extends Ellipse2D {
 		this.r = r;
 		this.xCenter = xCenter;
 		this.yCenter = yCenter;
+		ellipse = new Ellipse2D.Double(x, y, r, r);
 		
+	}
+	
+	public Ellipse2D getEllipse(){
+		return ellipse;
 	}
 
 	@Override
@@ -65,10 +71,12 @@ public class Ball extends Ellipse2D {
 
 	public void setX(double x) {
 		this.x = x;
+		ellipse.x = x;
 	}
 
 	public void setY(double y) {
 		this.y = y;
+		ellipse.y = y;
 	}
 	
 	public void setCenterX(double xCenter) {
@@ -81,20 +89,16 @@ public class Ball extends Ellipse2D {
 
 	@Override
 	public boolean isEmpty() {
-		return false;
+		return ellipse.isEmpty();
 	}
 
 	@Override
 	public Rectangle2D getBounds2D() {
-		return null;
+		return ellipse.getBounds2D();
 	}
 
 	@Override
 	public void setFrame(double x, double y, double w, double h) {
-		this.x = x;
-		this.y = y;
-		this.r = w;
-		this.xCenter = x+w;
-		this.yCenter = y+w;
+		ellipse.setFrame(x, y, w, h);
 	}
 }
