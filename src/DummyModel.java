@@ -14,7 +14,7 @@ public class DummyModel implements IBouncingBallsModel {
 
 	@Override
 	public void tick(double deltaT) {
-		List<Ellipse2D> myBalls = getBalls();
+		List<Ball> myBalls = getBalls();
 		for (int i = 0; i < myBalls.size(); i++) {
 
 			double centerX = myBalls.get(i).getCenterX();
