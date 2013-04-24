@@ -8,7 +8,7 @@ public class Ball extends Ellipse2D {
 	
 	public Ball(double xCenter, double yCenter, double vx, double vy, double r) {
 		this.x = xCenter-r;
-		this.y = yCenter+r;
+		this.y = yCenter-r;
 		this.vx = vx;
 		this.vy = vy;
 		this.r = r;
@@ -95,6 +95,6 @@ public class Ball extends Ellipse2D {
 		this.y = y;
 		this.r = w;
 		this.xCenter = x+w;
-		this.yCenter = y-w;
+		this.yCenter = y+w;
 	}
 }
