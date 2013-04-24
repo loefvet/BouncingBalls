@@ -7,34 +7,41 @@ public class DummyModel implements IBouncingBallsModel {
 	private final double areaWidth;
 	private final double areaHeight;
 
-	private double x, y, vx, vy, r;
-
 	public DummyModel(double width, double height) {
 		this.areaWidth = width;
 		this.areaHeight = height;
-		x = 1;
-		y = 1;
-		vx = 2.3;
-		vy = 1;
-		r = 1;
 	}
 
 	@Override
 	public void tick(double deltaT) {
-		if (x < r || x > areaWidth - r) {
-			vx *= -1;
+		List<Ellipse2D> myBalls = getBalls();
+		for (int i = 0; i < myBalls.size(); i++) {
+
+			double centerX = myBalls.get(i).getCenterX();
+			double centerY = myBalls.get(i).getCenterY();
+			double velocityX = myBalls.get(i).getVelocityX();
+			double velocityY = myBalls.get(i).getVelocityY();
+			double radius = myBalls.get(i).getWidth();
+
+			if (centerX < radius || centerX > areaWidth - radius) {
+				velocityX *= -1;
+				myBalls.get(i).setVelocityX(velocityX);
+
+			}
+			if (centerY < radius || centerY > areaHeight - radius) {
+				velocityY *= -1;
+				myBalls.get(i).setVelocityY(velocityY);
+			}
+			myBalls.get(i).setCenterX(centerX + velocityX * deltaT);
+			myBalls.get(i).setCenterY(centerY + velocityY * deltaT);
 		}
-		if (y < r || y > areaHeight - r) {
-			vy *= -1;
-		}
-		x += vx * deltaT;
-		y += vy * deltaT;
 	}
 
 	@Override
-	public List<Ellipse2D> getBalls() {
-		List<Ellipse2D> myBalls = new LinkedList<Ellipse2D>();
-		myBalls.add(new Ellipse2D.Double(x - r, y - r, 2 * r, 2 * r));
+	public List<Ball> getBalls() {
+		List<Ball> myBalls = new LinkedList<Ball>();
+		myBalls.add(new Ball(450, 227, 5, 3.6, 50));
+		myBalls.add(new Ball(760, 360, 1, 3, 75));
 		return myBalls;
 	}
 }
