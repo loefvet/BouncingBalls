@@ -9,8 +9,9 @@ public class DummyModel implements IBouncingBallsModel {
 	private List<Ball> myBalls = new LinkedList<Ball>();
 
 	public DummyModel(double width, double height) {
-		myBalls.add(new Ball(450, 220, 5, 3.6, 50));
-		myBalls.add(new Ball(760, 360, 1, 3, 75));
+		myBalls.add(new Ball(450, 220, 50, 36, 50));
+		myBalls.add(new Ball(760, 360, 100, 300, 75));
+		myBalls.add(new Ball(330, 125, 500, 500, 25));
 		this.areaWidth = width;
 		this.areaHeight = height;
 	}
@@ -19,24 +20,30 @@ public class DummyModel implements IBouncingBallsModel {
 	public void tick(double deltaT) {
 		for (int i = 0; i < myBalls.size(); i++) {
 
-			double centerX = myBalls.get(i).getCenterX();
-			double centerY = myBalls.get(i).getCenterY();
+			double x = myBalls.get(i).getX();
+			double y = myBalls.get(i).getY();
 			double velocityX = myBalls.get(i).getVelocityX();
 			double velocityY = myBalls.get(i).getVelocityY();
 			double radius = myBalls.get(i).getWidth();
-System.out.println(centerX);
-			if (centerX < radius || centerX > areaWidth - radius) {
+
+			if (x < radius || x > areaWidth - radius) {
 				velocityX *= -1;
 				myBalls.get(i).setVelocityX(velocityX);
 
 			}
-			if (centerY < radius || centerY > areaHeight - radius) {
+			if (y < radius || y > areaHeight - radius) {
 				velocityY *= -1;
 				myBalls.get(i).setVelocityY(velocityY);
 			}
-			myBalls.get(i).setCenterX(centerX + velocityX * deltaT);
-			myBalls.get(i).setCenterY(centerY + velocityY * deltaT);
-			System.out.println(myBalls.get(i).getCenterX());
+
+			for (int j = 0; j < myBalls.size(); j++) {
+				for (int n = 0; n < myBalls.size(); n++) {
+
+				}
+			}
+
+			myBalls.get(i).setX(x + velocityX * deltaT);
+			myBalls.get(i).setY(y + velocityY * deltaT);
 		}
 	}
 
