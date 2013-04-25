@@ -46,12 +46,12 @@ public class Ball extends Ellipse2D {
 	
 	@Override
 	public double getCenterX() {
-		return xCenter;
+		return x+d/2;
 	}
 
 	@Override
 	public double getCenterY() {
-		return yCenter;
+		return y+d/2;
 	}
 
 	public double getVelocityX(){
@@ -82,16 +82,6 @@ public class Ball extends Ellipse2D {
 	public void setY(double y) {
 		this.y = y;
 		ellipse.y = y;
-	}
-	
-	public void setCenterX(double xCenter) {
-		this.xCenter = xCenter;
-		ellipse.x = xCenter-d;
-	}
-	
-	public void setCenterY(double yCenter) {
-		this.yCenter = yCenter;
-		this.ellipse.y = yCenter-d;
 	}
 
 	@Override
