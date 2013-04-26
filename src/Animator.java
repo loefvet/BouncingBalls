@@ -35,7 +35,7 @@ public abstract class Animator extends JApplet {
 
 	@Override
 	public void init() {
-		setSize(1000, 500);
+		setSize(250, 250);
 		Dimension appletDimension = getSize();
 		canvasWidth = appletDimension.width;
 		canvasHeight = appletDimension.height;
