@@ -11,8 +11,8 @@ public class DummyModel implements IBouncingBallsModel {
 
 	public DummyModel(double width, double height) {
 		//myBalls.add(new Ball(450, 220, 150, 0, 50));
-		myBalls.add(new Ball(760, 360, 200, 100, 75));
-		myBalls.add(new Ball(330, 125, 23, -300, 25));
+		myBalls.add(new Ball(760, 360, 200, 0, 75));
+		myBalls.add(new Ball(330, 125, 23, 0, 25));
 		this.areaWidth = width;
 		this.areaHeight = height;
 	}
@@ -28,8 +28,8 @@ public class DummyModel implements IBouncingBallsModel {
 			double diameter = myBalls.get(i).getWidth();
 			
 
-			//velocityY += gravitation;
-			//myBalls.get(i).setVelocityY(velocityY);
+			velocityY += gravitation;
+			myBalls.get(i).setVelocityY(velocityY);
 			
 			if ((x <= 0 && velocityX < 0)|| (x >= areaWidth - diameter && velocityX > 0)) {
 				velocityX *= -1;
@@ -56,8 +56,8 @@ public class DummyModel implements IBouncingBallsModel {
 			}
 
 
-			//velocityY += gravitation;
-			//myBalls.get(i).setVelocityY(velocityY);
+			velocityY += gravitation;
+			myBalls.get(i).setVelocityY(velocityY);
 			
 			myBalls.get(i).setX(x + velocityX * deltaT);
 			myBalls.get(i).setY(y + velocityY * deltaT);
@@ -110,21 +110,21 @@ public class DummyModel implements IBouncingBallsModel {
 		
 		//TODO: reTranslate...
 		if(deltaX*deltaY < 0){
-			adjX1 = firstBall.getVelocityX()*Math.cos(alpha)-firstBall.getVelocityY()*Math.sin(alpha);
-			adjY1 = firstBall.getVelocityX()*Math.sin(alpha)+firstBall.getVelocityY()*Math.cos(alpha);
-			adjX2 = secondBall.getVelocityX()*Math.cos(alpha)-secondBall.getVelocityY()*Math.sin(alpha);
-			adjY2 = secondBall.getVelocityX()*Math.sin(alpha)+secondBall.getVelocityY()*Math.cos(alpha);
+			adjX1 = adjX1*Math.cos(alpha)-v1*Math.sin(alpha);
+			adjY1 = adjX1*Math.sin(alpha)+v1*Math.cos(alpha);
+			adjX2 = adjX2*Math.cos(alpha)-v2*Math.sin(alpha);
+			adjY2 = adjX2*Math.sin(alpha)+v2*Math.cos(alpha);
 		}else{
-			adjX1 = firstBall.getVelocityX()*Math.cos(alpha)+firstBall.getVelocityY()*Math.sin(alpha);
-			adjY1 = firstBall.getVelocityY()*Math.cos(alpha)-firstBall.getVelocityX()*Math.sin(alpha);
-			adjX2 = secondBall.getVelocityX()*Math.cos(alpha)+secondBall.getVelocityY()*Math.sin(alpha);
-			adjY2 = secondBall.getVelocityY()*Math.cos(alpha)-secondBall.getVelocityX()*Math.sin(alpha);
+			adjX1 = adjX1*Math.cos(alpha)+v1*Math.sin(alpha);
+			adjY1 = v1*Math.cos(alpha)-adjX1*Math.sin(alpha);
+			adjX2 = adjX2*Math.cos(alpha)+v2*Math.sin(alpha);
+			adjY2 = v2*Math.cos(alpha)-adjX2*Math.sin(alpha);
 		}
-
+		
 		if(type == Result.FIRSTX || type == Result.FIRSTY){
-			return v1;
+			return adjY1;
 		}else{
-			return v2;
+			return adjY2;
 			
 		}
 	}
